@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="write">
+
+	<insert id="insertPost" parameterType="com.javaex.vo.WriteVo">
+		<![CDATA[
+			 insert into post 
+			 values (seq_post_no.nextval, 
+					#{cateNo}, 
+					#{postTitle}, 
+					#{postContent}, 
+					sysdate)
+		 ]]>
+	</insert>
+	
+	<select id="getOnePost" parameterType="int" resultType="com.javaex.vo.WriteVo">
+	
+		select postNo,
+			   cateNo,
+			   postTitle,
+			   postContent,
+			   to_char(regDate, 'YYYY-MM-DD') as regDate
+		from post
+		where postNo = #{no}
+	
+	</select>
+
+
+</mapper>
